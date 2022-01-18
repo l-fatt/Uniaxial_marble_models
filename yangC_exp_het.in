@@ -1,0 +1,1439 @@
+*------------------------                           
+*Problem        Variables                           
+*------------------------                           
+
+*Titles   
+title1  =       "Yang exp. B" 
+title2  =       "2 fractures"             
+
+*Rock   Properties                                                                           
+pr    =     0.2                  *(possion's     ratio)                                            
+e     =     34560.000000                   *(young's       modulus MPa)                                                    
+k1c   =     1.00E+10                  *(mode  I       fracture toughness,     MPa sqrt(m), from rel.in) 
+tensileStrength = 1000    *(tensile strength,     MPa) 
+
+*Symmetry            
+ksym    =       1        
+
+*Gravitational  stresses     
+gravity =       0           *(apply gravity:        0=no,   1=yes)  
+kratio  =       1           *(ratio of      horizontal:vertical     gravitation     stress) 
+density =       2700    *(density       of      rock    kg/m^3)           
+
+*Number of      Observation     Lines   and     Boundary        Lines 
+nolines =       49           *(number        of      observation     lines,  must    mach    #       lines   designated      
+below)
+nblines =       7     	    *(number        of      boundary        lines,  must    mach    #       lines   designated      b
+elow)
+
+*Options        Commands                                                                             
+nsteps  =       1       *(number        of      loading steps)                                          
+niters  =       1       *(number        of      opening-mode    fracture        propagation     iterations)     
+pdfiter =       1       *(print data    from    fracture        prop    iteration)                          
+bdata   =       1       *(print data    along   boundaries:     0=no    1=yes)                          
+fdata   =       1       *(print data    along   (new    fractures:      0=no    1=yes)                  
+faultData       =       1       *(print data    along   faults: 0=no    1=yes)                          
+odata   =       1          *(print observation     line    data:   0=no    1=yes)                          
+tolerance       =       1.00E-06     *(test  for     frictinal       slip    convergence)                                    
+tolCounter      =       100          *(by-pass       tolerance       test    and     exit    convergence     at      this    
+iteration)     
+
+*Update topography ('YES' or 'NO')
+*Update = NO
+
+* Run sequentially (SEQUENTIAL, alphanumeric order) or serially (SERIAL, only  most efficient fault)
+*Run_Mode = SERIAL
+
+* Only test growth from fault tips with high K1 or K2 (YES to limit, NO to not limit)
+*Limit_Test = YES
+
+* Continue to check fault tips for growth that stopped growing previously (YES to continue, or NO to not check)
+*Continue_Check = YES
+
+end	*(terminate list)
+
+
+*Observation    Lines              
+*------------------                
+*xbeg   ybeg    xend    yend    numpb
+0.001	0.001	0.001	0.099	99
+0.002	0.001	0.002	0.099	99
+0.003	0.001	0.003	0.099	99
+0.004	0.001	0.004	0.099	99
+0.005	0.001	0.005	0.099	99
+0.006	0.001	0.006	0.099	99
+0.007	0.001	0.007	0.099	99
+0.008	0.001	0.008	0.099	99
+0.009	0.001	0.009	0.099	99
+0.01	0.001	0.01	0.099	99
+0.011	0.001	0.011	0.099	99
+0.012	0.001	0.012	0.099	99
+0.013	0.001	0.013	0.099	99
+0.014	0.001	0.014	0.099	99
+0.015	0.001	0.015	0.099	99
+0.016	0.001	0.016	0.099	99
+0.017	0.001	0.017	0.099	99
+0.018	0.001	0.018	0.099	99
+0.019	0.001	0.019	0.099	99
+0.02	0.001	0.02	0.099	99
+0.021	0.001	0.021	0.099	99
+0.022	0.001	0.022	0.099	99
+0.023	0.001	0.023	0.099	99
+0.024	0.001	0.024	0.099	99
+0.025	0.001	0.025	0.099	99
+0.026	0.001	0.026	0.099	99
+0.027	0.001	0.027	0.099	99
+0.028	0.001	0.028	0.099	99
+0.029	0.001	0.029	0.099	99
+0.03	0.001	0.03	0.099	99
+0.031	0.001	0.031	0.099	99
+0.032	0.001	0.032	0.099	99
+0.033	0.001	0.033	0.099	99
+0.034	0.001	0.034	0.099	99
+0.035	0.001	0.035	0.099	99
+0.036	0.001	0.036	0.099	99
+0.037	0.001	0.037	0.099	99
+0.038	0.001	0.038	0.099	99
+0.039	0.001	0.039	0.099	99
+0.04	0.001	0.04	0.099	99
+0.041	0.001	0.041	0.099	99
+0.042	0.001	0.042	0.099	99
+0.043	0.001	0.043	0.099	99
+0.044	0.001	0.044	0.099	99
+0.045	0.001	0.045	0.099	99
+0.046	0.001	0.046	0.099	99
+0.047	0.001	0.047	0.099	99
+0.048	0.001	0.048	0.099	99
+0.049	0.001	0.049	0.099	99
+
+*------------------   
+*Boundary       Lines  
+*------------------    
+*(bvs   =       shear;  bvn     =       normal) STATIC		MONOTONIC 
+*num    xbeg    ybeg    xend    yend    knode   bvs     bvn     bvs     bvn 
+*---    ----    ----    ----    ----    -----   ---     ---     ---     --- 
+104	0	0	0	0.052	1	0	0	0	0
+96	0	0.052	0	0.1	1	0	0	0	0
+89	0	0.1	0.0445	0.1	4	0	0	0	-0.00026
+11	0.0445	0.1	0.05	0.1	4	0	0	0	-0.00026
+104	0.05	0.1	0.05	0.048	1	0	0	0	0
+96	0.05	0.048	0.05	0	1	0	0	0	0
+1	0.05	0	0.0495	0	2	0	0	0	0
+68	0.0495	0	0.0155	0	4	0	0	0	0
+31	0.0155	0	0	0	4	0	0	0	0
+
+*---------------------- 
+*Fault  Conditions         
+*----------------------         
+*fault  name    grow_tails?     from_end1?      from_end2?  
+*num    xbeg    ybeg    xend    yend    stiffS   stiffN  ten-str init-coh slid-coh stat-fric dy-fric crit-slip 
+*----   ----    ----    ----    ----    ------   ------   ---     ---     -----     -------   ------  --------- 
+fault  f1  no  no no 
+*tag	stiffS		stiffN		ten-str	shear-str	coh	int-fric dy-fric crit-slip-distance	
+*Crack	1.00E+10	1.00E+10	65	195		10	0.6	 0.6	 0.001
+44 0.000   0.052  0.015556   0.036444   0  3.8e4  0 0 0 0.4 0.4 0.001
+2 0.015556   0.036444  0.016263   0.035737   0  1e10  0 0 0 0.4 0.4 0.001
+
+fault  f1g  no  no no 
+*tag	stiffS		stiffN		ten-str	shear-str	coh	int-fric dy-fric crit-slip-distance	
+*Crack	1.00E+10	1.00E+10	81	324		30	0.6	 0.6	 0.001
+2 0.016263   0.035737  0.01697   0.03503   1e10  1e10  0 25 25 0.4 0.4 0.001
+
+fault  f1y  no  no no 
+4	0.0155		0		0.015711129	0.001719333	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.015711129	0.001719333	0.016168564	0.003300769	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.016168564	0.003300769	0.016635737	0.00518563	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.016635737	0.00518563	0.017126513	0.007783356	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017126513	0.007783356	0.017401067	0.010022659	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017401067	0.010022659	0.017549667	0.012331524	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017549667	0.012331524	0.017403552	0.014264077	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017403552	0.014264077	0.017231653	0.016596291	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017231653	0.016596291	0.017229955	0.018456988	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017229955	0.018456988	0.017220911	0.021404478	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017220911	0.021404478	0.017649306	0.024022162	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017649306	0.024022162	0.017902343	0.025798281	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.017902343	0.025798281	0.018270158	0.02771939	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.018270158	0.02771939	0.018578003	0.029553505	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.018578003	0.029553505	0.018660797	0.031845545	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.018660797	0.031845545	0.018319209	0.034086839	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.018319209	0.034086839	0.01697		0.03503		1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+
+fault  f2  no  no  no
+*tag    stiffS          stiffN          ten-str shear-str       coh     int-fric dy-fric crit-slip-distance
+*Crack  1.00E+10        1.00E+10        65	195               10       0.6      0.6     0.001
+44  0.050	0.048	0.034444	0.063556 0  3.8e4 0 0 0 0.4 0.4 0.001
+2   0.034444	0.063556   0.033737	0.064263 0  1e10 0 0 0 0.4 0.4 0.001
+
+fault  f2g  no  no no 
+*tag	stiffS		stiffN		ten-str	shear-str	coh	int-fric dy-fric crit-slip-distance	
+*Crack	1.00E+10	1.00E+10	81	324		10	0.6	 0.6	 0.001
+2   0.033737	0.064263	0.03303	0.06497 1e10  1e10 0 25 25 0.4 0.4 0.001
+
+fault  f2y  no  no no 
+4	0.03444		0.06356		0.037067791	0.064944821	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.037067791	0.064944821	0.037812678	0.067255164	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.037812678	0.067255164	0.038140624	0.069628022	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.038140624	0.069628022	0.038347213	0.071454545	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.038347213	0.071454545	0.038395042	0.073262913	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.038395042	0.073262913	0.039587785	0.075469212	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.039587785	0.075469212	0.040859338	0.077369177	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.040859338	0.077369177	0.041727517	0.079451888	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.041727517	0.079451888	0.042241787	0.081774235	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.042241787	0.081774235	0.04274224	0.083733605	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.04274224	0.083733605	0.043240288	0.086113846	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.043240288	0.086113846	0.043602133	0.088252439	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.043602133	0.088252439	0.043915472	0.090391032	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.043915472	0.090391032	0.044268984	0.092802151	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.044268984	0.092802151	0.044323307	0.095286839	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.044323307	0.095286839	0.044491366	0.09716445	1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+4	0.044491366	0.09716445	0.0445		0.1		1.00E+10	1.00E+10	0	25	25	0.4	0.4	0.001
+
+fault rc1 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0456 0.0256 0.0458 0.0236 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc2 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0473 0.0825 0.0462 0.0842 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc3 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0227 0.0448 0.0223 0.0468 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc4 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0280 0.0047 0.0262 0.0038 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc5 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0448 0.0587 0.0456 0.0606 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc6 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0468 0.0768 0.0464 0.0748 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc7 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0243 0.0298 0.0232 0.0282 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc8 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0269 0.0284 0.0281 0.0268 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc9 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0408 0.0518 0.0391 0.0529 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc10 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0456 0.0718 0.0472 0.0729 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc11 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0334 0.0335 0.0350 0.0322 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc12 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0229 0.0710 0.0210 0.0704 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc13 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0072 0.0911 0.0080 0.0892 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc14 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0223 0.0610 0.0222 0.0590 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc15 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0397 0.0155 0.0384 0.0140 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc16 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0264 0.0839 0.0271 0.0820 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc17 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0182 0.0434 0.0163 0.0430 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc18 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0094 0.0488 0.0100 0.0507 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc19 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0331 0.0407 0.0313 0.0400 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc20 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0036 0.0643 0.0025 0.0626 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc21 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0394 0.0633 0.0411 0.0622 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc22 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0369 0.0290 0.0382 0.0305 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc23 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0083 0.0806 0.0103 0.0803 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc24 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0252 0.0415 0.0242 0.0432 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc25 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0354 0.0265 0.0344 0.0248 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc26 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0190 0.0896 0.0204 0.0911 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc27 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0462 0.0033 0.0448 0.0048 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc28 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0045 0.0022 0.0025 0.0018 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc29 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0352 0.0064 0.0371 0.0058 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc30 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0278 0.0589 0.0267 0.0573 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc31 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0068 0.0783 0.0053 0.0796 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc32 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0107 0.0166 0.0110 0.0147 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc33 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0184 0.0848 0.0189 0.0868 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc34 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0316 0.0941 0.0302 0.0956 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc35 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0349 0.0716 0.0330 0.0708 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc36 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0130 0.0876 0.0120 0.0893 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc37 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0031 0.0550 0.0048 0.0560 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc38 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0344 0.0857 0.0363 0.0852 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc39 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0337 0.0209 0.0356 0.0214 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc40 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0082 0.0099 0.0072 0.0116 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc41 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0284 0.0899 0.0267 0.0888 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc42 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0459 0.0664 0.0451 0.0646 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc43 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0267 0.0680 0.0254 0.0664 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc44 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0334 0.0090 0.0340 0.0110 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc45 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0051 0.0299 0.0066 0.0286 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc46 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0304 0.0712 0.0289 0.0725 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc47 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0075 0.0021 0.0073 0.0040 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc48 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0050 0.0049 0.0034 0.0062 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc49 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0122 0.0502 0.0133 0.0485 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc50 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0382 0.0886 0.0376 0.0867 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc51 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0284 0.0158 0.0266 0.0150 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc52 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0437 0.0080 0.0456 0.0074 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc53 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0127 0.0630 0.0115 0.0614 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc54 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0101 0.0216 0.0105 0.0236 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc55 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0252 0.0561 0.0237 0.0574 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc56 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0416 0.0289 0.0435 0.0296 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc57 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0108 0.0113 0.0115 0.0131 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc58 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0146 0.0094 0.0126 0.0095 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc59 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0216 0.0131 0.0197 0.0138 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc60 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0074 0.0201 0.0063 0.0184 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc61 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0446 0.0126 0.0427 0.0133 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc62 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0368 0.0953 0.0350 0.0945 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc63 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0208 0.0781 0.0210 0.0801 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc64 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0149 0.0658 0.0147 0.0638 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc65 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0376 0.0796 0.0359 0.0807 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc66 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0229 0.0976 0.0213 0.0964 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc67 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0175 0.0475 0.0170 0.0494 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc68 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0340 0.0526 0.0322 0.0535 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc69 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0282 0.0530 0.0267 0.0517 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc70 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0269 0.0118 0.0288 0.0125 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc71 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0314 0.0848 0.0298 0.0836 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc72 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0128 0.0183 0.0122 0.0202 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc73 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0247 0.0784 0.0250 0.0764 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc74 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0477 0.0881 0.0459 0.0873 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc75 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0118 0.0343 0.0103 0.0357 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc76 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0443 0.0748 0.0425 0.0741 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc77 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0184 0.0537 0.0183 0.0557 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc78 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0074 0.0526 0.0090 0.0537 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc79 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0118 0.0600 0.0106 0.0584 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc80 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0052 0.0229 0.0035 0.0219 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc81 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0257 0.0352 0.0237 0.0348 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc82 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0069 0.0878 0.0049 0.0876 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc83 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0134 0.0541 0.0145 0.0557 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc84 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0195 0.0382 0.0177 0.0390 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc85 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0128 0.0074 0.0120 0.0056 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc86 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0322 0.0121 0.0303 0.0115 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc87 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0300 0.0768 0.0281 0.0762 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc88 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0398 0.0250 0.0414 0.0238 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc89 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0451 0.0383 0.0433 0.0393 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc90 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0297 0.0597 0.0312 0.0611 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc91 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0177 0.0683 0.0157 0.0682 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc92 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0421 0.0318 0.0417 0.0338 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc93 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0172 0.0805 0.0191 0.0811 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc94 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0074 0.0552 0.0081 0.0571 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc95 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0031 0.0924 0.0044 0.0909 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc96 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0183 0.0659 0.0189 0.0640 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc97 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0315 0.0049 0.0301 0.0064 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc98 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0076 0.0711 0.0071 0.0731 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc99 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0227 0.0319 0.0213 0.0333 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc100 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0342 0.0154 0.0339 0.0174 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc101 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0196 0.0839 0.0207 0.0822 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc102 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0414 0.0365 0.0394 0.0362 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc103 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0467 0.0202 0.0450 0.0213 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc104 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0037 0.0727 0.0048 0.0744 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc105 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0061 0.0830 0.0041 0.0829 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc106 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0239 0.0870 0.0228 0.0887 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc107 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0374 0.0376 0.0358 0.0363 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc108 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0041 0.0261 0.0021 0.0266 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc109 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0199 0.0032 0.0214 0.0045 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc110 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0223 0.0929 0.0241 0.0920 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc111 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0380 0.0473 0.0376 0.0493 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc112 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0311 0.0788 0.0294 0.0798 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc113 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0170 0.0584 0.0156 0.0571 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc114 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0103 0.0468 0.0120 0.0458 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc115 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0243 0.0044 0.0232 0.0028 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc116 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0324 0.0575 0.0330 0.0594 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc117 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0153 0.0310 0.0148 0.0290 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc118 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0073 0.0954 0.0082 0.0936 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc119 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0253 0.0187 0.0242 0.0171 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc120 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0100 0.0733 0.0120 0.0732 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc121 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0382 0.0430 0.0394 0.0446 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc122 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0046 0.0357 0.0065 0.0362 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc123 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0171 0.0738 0.0173 0.0758 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc124 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0148 0.0151 0.0138 0.0133 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc125 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0379 0.0077 0.0396 0.0087 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc126 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0099 0.0847 0.0094 0.0828 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc127 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0414 0.0206 0.0412 0.0186 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc128 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0245 0.0221 0.0249 0.0241 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc129 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0134 0.0228 0.0129 0.0248 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc130 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0121 0.0929 0.0106 0.0943 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc131 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0072 0.0624 0.0080 0.0642 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc132 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0305 0.0656 0.0297 0.0674 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc133 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0132 0.0422 0.0146 0.0437 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc134 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0421 0.0059 0.0417 0.0039 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc135 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0061 0.0683 0.0048 0.0699 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc136 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0074 0.0743 0.0076 0.0762 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc137 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0414 0.0461 0.0422 0.0442 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc138 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0448 0.0152 0.0455 0.0170 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc139 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0209 0.0077 0.0203 0.0096 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc140 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0245 0.0714 0.0253 0.0732 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc141 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0035 0.0522 0.0054 0.0516 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc142 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0193 0.0954 0.0204 0.0937 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc143 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0424 0.0666 0.0424 0.0646 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc144 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0369 0.0122 0.0386 0.0111 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc145 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0212 0.0749 0.0211 0.0729 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc146 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0289 0.0416 0.0285 0.0436 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc147 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0044 0.0764 0.0024 0.0765 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc148 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0111 0.0700 0.0096 0.0686 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc149 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0334 0.0455 0.0318 0.0443 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc150 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0339 0.0423 0.0359 0.0422 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc151 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0228 0.0386 0.0214 0.0400 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc152 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0352 0.0688 0.0342 0.0671 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc153 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0458 0.0472 0.0468 0.0455 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc154 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0304 0.0187 0.0312 0.0169 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc155 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0342 0.0769 0.0346 0.0750 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc156 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0065 0.0139 0.0084 0.0145 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc157 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0091 0.0658 0.0078 0.0673 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc158 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0134 0.0283 0.0135 0.0263 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc159 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0390 0.0414 0.0374 0.0403 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc160 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0286 0.0489 0.0277 0.0471 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc161 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0226 0.0500 0.0206 0.0498 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc162 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0079 0.0394 0.0061 0.0401 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc163 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0226 0.0641 0.0220 0.0622 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc164 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0116 0.0762 0.0136 0.0762 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc165 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0312 0.0253 0.0292 0.0254 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc166 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0152 0.0932 0.0170 0.0924 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc167 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0091 0.0265 0.0100 0.0283 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc168 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0459 0.0556 0.0477 0.0564 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc169 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0376 0.0923 0.0395 0.0917 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc170 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0071 0.0254 0.0061 0.0270 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc171 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0155 0.0977 0.0143 0.0962 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc172 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0406 0.0404 0.0424 0.0414 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc173 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0258 0.0390 0.0277 0.0397 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc174 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0337 0.0500 0.0319 0.0492 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc175 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0153 0.0805 0.0133 0.0808 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc176 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0067 0.0594 0.0081 0.0608 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc177 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0474 0.0632 0.0460 0.0619 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc178 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0034 0.0107 0.0053 0.0103 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc179 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0293 0.0310 0.0301 0.0328 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc180 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0221 0.0525 0.0239 0.0533 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc181 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0375 0.0572 0.0374 0.0552 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc182 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0273 0.0076 0.0254 0.0081 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc183 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0035 0.0125 0.0026 0.0144 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc184 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0463 0.0316 0.0453 0.0333 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc185 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0047 0.0407 0.0032 0.0394 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc186 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0472 0.0793 0.0454 0.0785 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc187 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0324 0.0894 0.0304 0.0895 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc188 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0455 0.0436 0.0435 0.0438 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc189 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0206 0.0168 0.0212 0.0187 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc190 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0112 0.0026 0.0094 0.0017 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc191 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0033 0.0597 0.0052 0.0603 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc192 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0460 0.0703 0.0462 0.0683 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc193 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0366 0.0445 0.0353 0.0460 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc194 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0387 0.0212 0.0369 0.0203 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc195 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0410 0.0688 0.0428 0.0697 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc196 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0121 0.0975 0.0110 0.0958 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc197 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0477 0.0113 0.0457 0.0112 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc198 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0264 0.0635 0.0281 0.0625 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc199 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0260 0.0936 0.0274 0.0950 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc200 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0229 0.0126 0.0234 0.0107 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc201 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0322 0.0272 0.0333 0.0289 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc202 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0058 0.0976 0.0049 0.0959 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc203 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0185 0.0603 0.0165 0.0608 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc204 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0167 0.0839 0.0150 0.0829 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc205 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0427 0.0089 0.0408 0.0082 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc206 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0256 0.0314 0.0274 0.0322 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc207 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0071 0.0309 0.0079 0.0328 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc208 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0247 0.0461 0.0266 0.0455 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc209 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0149 0.0877 0.0160 0.0861 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc210 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0365 0.0515 0.0352 0.0500 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc211 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0082 0.0072 0.0062 0.0070 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc212 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0423 0.0169 0.0412 0.0152 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc213 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0220 0.0229 0.0215 0.0210 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc214 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0226 0.0076 0.0230 0.0057 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc215 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0241 0.0834 0.0224 0.0844 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc216 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0289 0.0210 0.0308 0.0204 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc217 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0114 0.0320 0.0101 0.0305 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc218 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0134 0.0672 0.0133 0.0692 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc219 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0252 0.0798 0.0242 0.0816 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc220 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0347 0.0121 0.0348 0.0141 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc221 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0391 0.0338 0.0375 0.0325 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc222 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0338 0.0780 0.0336 0.0800 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc223 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0342 0.0366 0.0323 0.0373 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc224 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0274 0.0691 0.0270 0.0711 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc225 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0383 0.0953 0.0397 0.0967 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc226 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0336 0.0925 0.0347 0.0908 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc227 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0457 0.0274 0.0474 0.0285 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc228 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0037 0.0851 0.0030 0.0869 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc229 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0447 0.0499 0.0427 0.0497 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc230 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0168 0.0722 0.0159 0.0704 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc231 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0209 0.0660 0.0208 0.0680 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc232 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0387 0.0835 0.0390 0.0815 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc233 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0118 0.0520 0.0104 0.0534 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc234 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0302 0.0377 0.0284 0.0368 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc235 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0318 0.0240 0.0329 0.0223 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc236 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0189 0.0572 0.0207 0.0581 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc237 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0200 0.0423 0.0219 0.0426 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc238 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0257 0.0871 0.0270 0.0856 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc239 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0331 0.0032 0.0351 0.0035 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc240 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0041 0.0316 0.0044 0.0336 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc241 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0097 0.0086 0.0113 0.0098 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc242 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0468 0.0375 0.0464 0.0355 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc243 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0049 0.0667 0.0058 0.0649 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc244 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0259 0.0496 0.0239 0.0493 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc245 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0228 0.0262 0.0212 0.0251 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc246 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0361 0.0188 0.0372 0.0171 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc247 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0379 0.0024 0.0379 0.0044 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc248 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0033 0.0429 0.0050 0.0439 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc249 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0301 0.0082 0.0284 0.0093 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
+
+fault rc250 no yes yes
+*tag stiffS stiffN ten-str shear-str coh int-fric dy-fric crit-slip-distance
+*Crack 1.0E+10 1.00E+10 65	260 30 0.6 0.6 0.001
+4 0.0291 0.0974 0.0273 0.0965 1.0e+10 1.4e+08 0 25 25 0.4 0.4 1.0e-03
